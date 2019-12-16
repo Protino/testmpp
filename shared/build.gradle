@@ -1,0 +1,34 @@
+plugins {
+    id 'org.jetbrains.kotlin.multiplatform'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+    jvm("android") // Creates a JVM target with the default name 'jvm'
+    js {
+        browser {
+
+        }
+    }
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation kotlin('stdlib-common')
+            }
+        }
+        androidMain {
+            dependencies {
+                implementation kotlin('stdlib')
+            }
+        }
+        jsMain {
+            dependencies {
+                implementation kotlin('stdlib-js')
+            }
+        }
+    }
+}
