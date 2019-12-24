@@ -1,3 +1,4 @@
+enableFeaturePreview("GRADLE_METADATA")
+
 include ':android', ':web', ':shared'
 rootProject.name = 'testmpp'
-

@@ -1,11 +1,18 @@
+import sample.SamplePresenter
+import sample.SampleView
+import sample.data.SampleData
 import external.MaterialButton
-import react.RBuilder
-import react.RComponent
-import react.RProps
-import react.RState
+import react.*
 
 
-class App : RComponent<RProps, RState>(){
+class App : RComponent<RProps, App.AppState>(), SampleView {
+
+    private val presenter = SamplePresenter.getInstance(this)
+
+    override fun componentDidMount() {
+        super.componentDidMount()
+        presenter.getSampleData()
+    }
 
     override fun RBuilder.render() {
 
@@ -14,7 +21,19 @@ class App : RComponent<RProps, RState>(){
                 variant = "contained"
                 color = "primary"
             }
-            +"Nice"
+            +state.text
+        }
+
+        //styledImg(src = "") {  }
+    }
+
+    interface AppState : RState {
+        var text: String
+    }
+
+    override fun setSampleData(data: SampleData) {
+        setState {
+            text = data.text.name
         }
     }
 }
